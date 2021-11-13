@@ -2,7 +2,17 @@
  {:duct.core/project-ns duct-sample-api
 
   :duct.router/ataraxy
-  {:routes {}}
+  {:routes
+   {"/samples"
+    {[:get] [:duct-sample-api.handler.sample/list]
+     [:post {sample :body-params}] [:duct-sample-api.handler.sample/create sample]
+     ["/" id]
+     {[:get] [:duct-sample-api.handler.sample/fetch ^int id]}}}}
+
+  :duct-sample-api.handler.sample/list {:db #ig/ref :duct.database/sql}
+  :duct-sample-api.handler.sample/create {:db #ig/ref :duct.database/sql}
+  :duct-sample-api.handler.sample/fetch {:db #ig/ref :duct.database/sql}
+
 
   [:duct.migrator.ragtime/sql :duct-sample-api.migration/create-table]
   {:up ["CREATE TABLE sample(id SERIAL PRIMARY KEY, name TEXT);"]
