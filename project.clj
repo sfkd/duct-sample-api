@@ -8,8 +8,7 @@
                  [duct/module.logging "0.5.0"]
                  [duct/module.sql "0.6.1"]
                  [duct/module.web "0.7.3"]
-                 [org.postgresql/postgresql "42.2.19"]
-                 [org.xerial/sqlite-jdbc "3.34.0"]]
+                 [org.postgresql/postgresql "42.2.19"]]
   :plugins [[duct/lein-duct "0.12.3"]]
   :main ^:skip-aot duct-sample-api.main
   :resource-paths ["resources" "target/resources"]
@@ -26,4 +25,5 @@
                   :dependencies   [[integrant/repl "0.3.2"]
                                    [hawk "0.2.11"]
                                    [eftest "0.5.9"]
-                                   [kerodon "0.9.1"]]}})
+                                   [kerodon "0.9.1"]
+                                   [org.xerial/sqlite-jdbc "3.34.0"]]}})
