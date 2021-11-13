@@ -2,7 +2,14 @@
  {:duct.core/project-ns duct-sample-api
 
   :duct.router/ataraxy
-  {:routes {}}}
+  {:routes {}}
+
+  [:duct.migrator.ragtime/sql :duct-sample-api.migration/create-table]
+  {:up ["CREATE TABLE sample(id SERIAL PRIMARY KEY, name TEXT);"]
+   :down ["DROP TABLE sample;"]}
+
+  :duct.migrator/ragtime
+  {:migrations [#ig/ref :duct-sample-api.migration/create-table]}}
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
