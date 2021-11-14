@@ -15,6 +15,7 @@
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
+ :duct.profile/test   #duct/include "test"
  :duct.profile/prod
  {:duct.migrator/ragtime
   {:migrations [#ig/ref :duct-sample-api.migration/prod]}
