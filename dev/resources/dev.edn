@@ -1,3 +1,8 @@
 {:duct.database/sql
  {:connection-uri "jdbc:sqlite:db/dev.sqlite"}
- }
+
+ :duct.migrator/ragtime
+ {:migrations [#ig/ref :duct-sample-api.migration/dev]}
+
+ [:duct.migrator.ragtime/resources :duct-sample-api.migration/dev]
+ {:path "migrations/sqlite"}}
