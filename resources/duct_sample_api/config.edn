@@ -11,19 +11,16 @@
 
   :duct-sample-api.handler.sample/list {:db #ig/ref :duct.database/sql}
   :duct-sample-api.handler.sample/create {:db #ig/ref :duct.database/sql}
-  :duct-sample-api.handler.sample/fetch {:db #ig/ref :duct.database/sql}
-
-
-  [:duct.migrator.ragtime/sql :duct-sample-api.migration/create-table]
-  {:up ["CREATE TABLE sample(id SERIAL PRIMARY KEY, name TEXT);"]
-   :down ["DROP TABLE sample;"]}
-
-  :duct.migrator/ragtime
-  {:migrations [#ig/ref :duct-sample-api.migration/create-table]}}
+  :duct-sample-api.handler.sample/fetch {:db #ig/ref :duct.database/sql}}
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
- :duct.profile/prod  {}
+ :duct.profile/prod
+ {:duct.migrator/ragtime
+  {:migrations [#ig/ref :duct-sample-api.migration/prod]}
+
+  [:duct.migrator.ragtime/resources :duct-sample-api.migration/prod]
+  {:path "migrations/postgres"}}
 
  :duct.module/logging {}
  :duct.module.web/api
